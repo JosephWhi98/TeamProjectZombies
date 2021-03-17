@@ -25,10 +25,11 @@ namespace Photon.Pun.Demo.SlotRacer
     [ExecuteInEditMode]
     public class SlotRacerSplashScreen : MonoBehaviour
     {
+#if UNITY_EDITOR
+		string PunCockpit_scene = "PunCockpit-Scene";
+#endif
 
-        string PunCockpit_scene = "PunCockpit-Scene";
-
-        public Text WarningText;
+		public Text WarningText;
         public GameObject SplashScreen;
 
         void Start()
