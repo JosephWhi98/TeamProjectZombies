@@ -3,9 +3,7 @@
 public class FirstPersonMovement : MonoBehaviour
 {
     public float speed = 5;
-    Vector2 velocity;
-
-
+    [HideInInspector] public Vector2 velocity;
     void FixedUpdate()
     {
         velocity.y = Input.GetAxis("Vertical") * speed * Time.deltaTime;

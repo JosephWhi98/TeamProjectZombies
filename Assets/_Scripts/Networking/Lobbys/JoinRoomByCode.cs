@@ -1,4 +1,5 @@
 ﻿using NetworkingSystems;
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,10 +11,9 @@ namespace NetworkingSystems
     public class JoinRoomByCode : MonoBehaviour
     {
         public TMP_InputField input;
-        public LobbyController lobbyController;
         public void Join()
         {
-            lobbyController.JoinRoom(input.text.ToUpper());
+            PhotonNetwork.JoinRoom(input.text.ToUpper());
         }
     }
 }

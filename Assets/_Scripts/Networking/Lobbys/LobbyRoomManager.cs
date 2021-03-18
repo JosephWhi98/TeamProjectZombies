@@ -31,6 +31,11 @@ namespace NetworkingSystems
 
             UI.SetActive(false);
         }
+        public void LeaveRoom()
+        {
+            if (PhotonNetwork.InRoom)
+                PhotonNetwork.LeaveRoom();
+        }
         public override void OnPlayerEnteredRoom(Player newPlayer)
         {
             AddPlayerToList(newPlayer);

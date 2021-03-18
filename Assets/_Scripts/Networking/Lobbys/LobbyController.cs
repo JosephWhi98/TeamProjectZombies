@@ -18,24 +18,19 @@ namespace NetworkingSystems
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected to Master");
-
+            PhotonNetwork.JoinLobby();
         }
         public void QuickJoin()
         {
             PhotonNetwork.JoinRandomRoom();
         }
-        public void CreateRoom(bool isOpen = true)
+        public void CreateRoom()
         {
             PhotonNetwork.CreateRoom(RandomLobbyName.GetRandomRoomName(), new RoomOptions
             {
                 MaxPlayers = 4,
-                IsVisible = true,
-                IsOpen = isOpen
+                IsVisible = false
             });
-        }
-        public void JoinRoom(string name)
-        {
-            PhotonNetwork.JoinRoom(name);
         }
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
