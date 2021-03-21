@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public static GameObject playerInstance;
     public Transform[] spawnPoints;
+
     void Awake()
     {
         if(PhotonNetwork.InRoom)

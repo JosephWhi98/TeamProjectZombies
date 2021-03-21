@@ -7,13 +7,22 @@ public class AIManager : MonoBehaviour
 {
     public enum AIType { ZOMBIE, };
 
-    public List<AIBase> baseAIComponents;
-
     [SerializeField] AIBase[] aiPrefabs;
+
+
+    public List<AIBase> baseAIComponents;
+    public Transform[] aiSpawnPositions;
+
 
     public void Awake()
     {
         baseAIComponents = new List<AIBase>();
+    }
+
+    public void SpawnNewAI(AIType aiType)
+    {
+        Transform spawnPoint = aiSpawnPositions[Random.Range(0, aiSpawnPositions.Length)];
+        SpawnNewAI(aiType, spawnPoint.position);
     }
 
     public void SpawnNewAI(AIType aiType, Vector3 spawnPosition)
@@ -27,11 +36,28 @@ public class AIManager : MonoBehaviour
         }
     }
 
-    //returns the target for the AI based on state and location. This shoudl only be used by the host. 
     public Transform GetTarget(AIBase aiComponent)
     {
-        //If outside, target a window.
-        //If inside, target a player or target the generator (need rules for this??) 
-        return transform; //temp
+        switch (aiComponent.currentRoom)
+        {
+            case Room.RoomType.OUTSIDE:
+                return GetOutsideTarget();
+            case Room.RoomType.INSIDE:
+                return GetInsideTarget();
+        }
+
+        return null;
+    }
+
+    public Transform GetInsideTarget()
+    {
+        return FindObjectOfType<FirstPersonMovement>().transform; //TODO - this needs to decide which player to target or if it would be best to target the generator. 
+    }
+
+    public Transform GetOutsideTarget()
+    {
+        //TODO - window target needs to be determined based on how many enemies are already targeting a window. 
+        int index = Random.Range(0, BaseScene.Instance.enterancePortals.Length);
+        return BaseScene.Instance.enterancePortals[index].transform;
     }
 }

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public enum RoomType { OUTSIDE, INSIDE };
+    public enum RoomType {NONE, OUTSIDE, INSIDE };
 
+    public RoomType roomType;
     public Collider[] boundColliders;
 
     public void Awake()

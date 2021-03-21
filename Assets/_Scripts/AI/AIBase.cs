@@ -16,11 +16,14 @@ public class AIBase : MonoBehaviourPun
 
     public bool hasTarget;
 
+    public Room.RoomType currentRoom;
 
     private void Start()
     {
-        target = FindObjectOfType<FirstPersonMovement>().transform;
+        currentRoom = Room.RoomType.INSIDE; //TEMP - will be determined by position in scene in future. 
+        target = BaseScene.Instance.aiManager.GetTarget(this);
     }
+
     public void Update()
     {
         if (target != null)
