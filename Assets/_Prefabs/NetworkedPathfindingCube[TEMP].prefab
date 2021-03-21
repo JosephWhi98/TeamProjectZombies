@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 1058018784113492833}
   - component: {fileID: 1058018784113492832}
   - component: {fileID: 1058018784113492839}
-  - component: {fileID: 1058018784113492838}
-  m_Layer: 0
+  - component: {fileID: 1058018785027749346}
+  m_Layer: 9
   m_Name: NetworkedPathfindingCube[TEMP]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,8 +137,6 @@ MonoBehaviour:
   target: {fileID: 0}
   navMeshAgent: {fileID: 1058018784113492833}
   hasTarget: 1
-  interpolate: 1
-  extrapolate: 1
 --- !u!114 &1058018784113492839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,11 +155,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 1058018784113492832}
+  - {fileID: 1058018785027749346}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &1058018784113492838
+--- !u!114 &1058018785027749346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,9 +168,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058018784113492895}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 53160d48ec773304280b635bbc6fcfcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  componetsToTurnOff:
+  - {fileID: 1058018784113492832}
+  - {fileID: 1058018784113492833}
+  interpolate: 1
+  extrapolate: 1
