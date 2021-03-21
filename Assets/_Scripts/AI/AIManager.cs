@@ -26,4 +26,12 @@ public class AIManager : MonoBehaviour
             baseAIComponents.Add(newAIObject.GetComponent<AIBase>());
         }
     }
+
+    //returns the target for the AI based on state and location. This shoudl only be used by the host. 
+    public Transform GetTarget(AIBase aiComponent)
+    {
+        //If outside, target a window.
+        //If inside, target a player or target the generator (need rules for this??) 
+        return transform; //temp
+    }
 }
