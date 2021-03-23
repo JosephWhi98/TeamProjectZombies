@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class AIBase : MonoBehaviourPun
 {
-    public AIManager.AIType type;
+    public AIType type;
 
     public float moveSpeed;
     public float turnSpeed;

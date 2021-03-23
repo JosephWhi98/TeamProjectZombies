@@ -8,13 +8,12 @@ namespace NetworkingSystems
 {
     public class NetworkingPlayerMovement : NetworkedTransform
     {
-     
         public Crouch crouchController;
 
-        // Start is called before the first frame update
-        protected override void Start()
+        protected override void OnEnable()
         {
-            base.Start();
+            base.OnEnable();
+
             if (!photonView.IsMine)
             {
                 //DISABLE PLAYER INPUT SYSTEMS
@@ -22,13 +21,11 @@ namespace NetworkingSystems
                     rb.isKinematic = true;
                 crouchController.receiveInput = false;
 
-                Destroy(GetComponentInChildren<AudioListener>(true));
+                AudioListener al = GetComponentInChildren<AudioListener>(true);
+                if (al)
+                    Destroy(al);
             }
-        }
-        protected override void OnEnable()
-        {
-            base.OnEnable();
-            if (photonView.IsMine)
+            else //(photonView.IsMine)
             {
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;

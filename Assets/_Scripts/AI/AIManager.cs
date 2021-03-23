@@ -1,39 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq; 
+using System.Linq;
 
+public enum AIType { ZOMBIE, };
 public class AIManager : MonoBehaviour
 {
-    public enum AIType { ZOMBIE, };
-
-    [SerializeField] AIBase[] aiPrefabs;
-
-
-    public List<AIBase> baseAIComponents;
     public Transform[] aiSpawnPositions;
 
-
+    private IAISpawnHandler aiSpawner;
+    [Header("DebugInfo")]
+    public List<AIBase> baseAIComponents;
     public void Awake()
     {
         baseAIComponents = new List<AIBase>();
     }
 
+    private void Start()
+    {
+        aiSpawner = GetComponent<IAISpawnHandler>();
+    }
+
     public void SpawnNewAI(AIType aiType)
     {
         Transform spawnPoint = aiSpawnPositions[Random.Range(0, aiSpawnPositions.Length)];
-        SpawnNewAI(aiType, spawnPoint.position);
-    }
-
-    public void SpawnNewAI(AIType aiType, Vector3 spawnPosition)
-    {
-        AIBase enemyPrefab = aiPrefabs.FirstOrDefault(e => e.type == aiType);
-
-        if (enemyPrefab)
-        {
-            GameObject newAIObject = Instantiate(enemyPrefab.gameObject, spawnPosition, Quaternion.identity, transform);
-            baseAIComponents.Add(newAIObject.GetComponent<AIBase>());
-        }
+        baseAIComponents.Add( aiSpawner.Spawn(aiType, spawnPoint.position) );
     }
 
     public Transform GetTarget(AIBase aiComponent)
@@ -60,4 +51,11 @@ public class AIManager : MonoBehaviour
         int index = Random.Range(0, BaseScene.Instance.enterancePortals.Length);
         return BaseScene.Instance.enterancePortals[index].transform;
     }
+#if UNITY_EDITOR
+    [ContextMenu("TestSpawn")]
+    public void SpawnZombieTest()
+    {
+        SpawnNewAI(AIType.ZOMBIE);
+    }
+#endif
 }

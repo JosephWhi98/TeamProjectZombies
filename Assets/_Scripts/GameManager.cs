@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameObject playerInstance;
     public Transform[] spawnPoints;
 
-    void Awake()
+    void Start()
     {
         if(PhotonNetwork.InRoom)
             playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber % spawnPoints.Length].position, Quaternion.identity);
