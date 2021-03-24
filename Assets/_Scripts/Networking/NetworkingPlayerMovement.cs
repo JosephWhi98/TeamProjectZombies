@@ -30,6 +30,9 @@ namespace NetworkingSystems
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }
+
+            GameManager.instance.AddPlayer(photonView.Owner, gameObject.transform);
+               
         }
         private void OnDisable()
         {
