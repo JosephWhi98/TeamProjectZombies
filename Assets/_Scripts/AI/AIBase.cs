@@ -21,6 +21,8 @@ public class AIBase : MonoBehaviourPun
 
     public Room.RoomType currentRoom;
 
+    public float nextPossibleAttackTime;
+
     private void Start()
     {
         currentRoom = Room.RoomType.OUTSIDE; //TEMP - will be determined by position in scene in future. 
@@ -41,6 +43,30 @@ public class AIBase : MonoBehaviourPun
         }
     }
 
+    public bool AttackTarget()
+    {
+        IDamageable damageable = (IDamageable)target.GetComponent(typeof(IDamageable));
+
+        if (damageable != null && Time.time > nextPossibleAttackTime)
+        {
+            if (!damageable.IsDead())
+            {
+                if (currentState == States.AT_PORT)
+                {
+                    damageable.TakeDamage(1);
+                }
+
+                nextPossibleAttackTime = Time.time + 2f;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return false; 
+    }
+
     public void HandleStates()
     {
         switch (currentState)
@@ -57,9 +83,12 @@ public class AIBase : MonoBehaviourPun
                 break;
             case States.AT_PORT:
                 //CHECK PORT HEALTH - ATTACK OR SELECT NEXT TARGET!
-                currentState = States.PATH_PLAYER;
-                currentRoom = Room.RoomType.INSIDE;
-                target = BaseScene.Instance.aiManager.GetTarget(this);
+                if (AttackTarget())
+                {
+                    currentState = States.PATH_PLAYER;
+                    currentRoom = Room.RoomType.INSIDE;
+                    target = BaseScene.Instance.aiManager.GetTarget(this);
+                }
                 break;
             default:
                 break;

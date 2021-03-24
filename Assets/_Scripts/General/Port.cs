@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Port : MonoBehaviour
+public class Port : MonoBehaviour, IDamageable
 {
     [SerializeField] private int health;
 
-    public bool Open { get { return (health <= 0); } }
+    public bool Open { get { return IsDead(); } }
+
+    public void Start()
+    {
+        SetHealth(3);
+    }
 
     public void Update()
     {
         health = Mathf.Clamp(health, 0, 3);
+    }
+
+    public void SetHealth(int newHealth)
+    {
+        health = newHealth;
     }
 
     public void TakeDamage(int damage = 1)
@@ -18,8 +28,8 @@ public class Port : MonoBehaviour
         health -= damage; 
     }
 
-    public void SetHealth(int newHealth)
+    public bool IsDead()
     {
-        health = newHealth; 
+        return health <= 0;
     }
 }

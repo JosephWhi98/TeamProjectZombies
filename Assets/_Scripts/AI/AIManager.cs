@@ -51,6 +51,7 @@ public class AIManager : MonoBehaviour
         int index = Random.Range(0, BaseScene.Instance.enterancePortals.Length);
         return BaseScene.Instance.enterancePortals[index].transform;
     }
+
 #if UNITY_EDITOR
     [ContextMenu("TestSpawn")]
     public void SpawnZombieTest()
