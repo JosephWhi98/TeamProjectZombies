@@ -2,34 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthComponent))]
 public class Port : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int health;
+    private HealthComponent healthComponent;
 
     public bool Open { get { return IsDead(); } }
 
     public void Start()
     {
-        SetHealth(3);
+        healthComponent = GetComponent<HealthComponent>();
     }
 
-    public void Update()
-    {
-        health = Mathf.Clamp(health, 0, 3);
-    }
-
-    public void SetHealth(int newHealth)
-    {
-        health = newHealth;
-    }
 
     public void TakeDamage(int damage = 1)
     {
-        health -= damage; 
+        healthComponent.ChangeHealth(-damage);
     }
 
     public bool IsDead()
     {
-        return health <= 0;
+        return healthComponent.IsDead();
     }
 }
