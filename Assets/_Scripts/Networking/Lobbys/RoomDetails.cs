@@ -19,6 +19,9 @@ namespace NetworkingSystems
         enum Maps
         {
             Casa = 0,
+            CasaCurtis = 1,
+            CasaDale = 2,
+            CasaLiam = 3,
         }
         string sceneName;
 

@@ -1442,6 +1442,12 @@ MonoBehaviour:
     m_Options:
     - m_Text: Casa
       m_Image: {fileID: 0}
+    - m_Text: CasaCurtis
+      m_Image: {fileID: 0}
+    - m_Text: CasaDale
+      m_Image: {fileID: 0}
+    - m_Text: CasaLiam
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6744,7 +6750,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1225872346}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
