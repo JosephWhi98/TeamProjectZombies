@@ -132,11 +132,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  currentState: 0
   moveSpeed: 5
   turnSpeed: 0
   target: {fileID: 0}
   navMeshAgent: {fileID: 1058018784113492833}
   hasTarget: 1
+  currentRoom: 0
 --- !u!114 &1058018784113492839
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,10 @@ using Photon.Pun;
 
 public class AIBase : MonoBehaviourPun
 {
+    public enum States { NONE, PATH_PORT, AT_PORT, PATH_PLAYER, PATH_GENERATOR, AT_GENERATOR };
+
     public AIType type;
+    public States currentState = States.NONE;
 
     public float moveSpeed;
     public float turnSpeed;
@@ -20,12 +23,13 @@ public class AIBase : MonoBehaviourPun
 
     private void Start()
     {
-        currentRoom = Room.RoomType.INSIDE; //TEMP - will be determined by position in scene in future. 
-        target = BaseScene.Instance.aiManager.GetTarget(this);
+        currentRoom = Room.RoomType.OUTSIDE; //TEMP - will be determined by position in scene in future. 
     }
 
     public void Update()
     {
+        HandleStates();
+
         if (target != null)
         {
             navMeshAgent.destination = target.position;
@@ -33,7 +37,32 @@ public class AIBase : MonoBehaviourPun
         }
         else
         {
-            navMeshAgent.speed = 0; 
+            navMeshAgent.speed = 0;
+        }
+    }
+
+    public void HandleStates()
+    {
+        switch (currentState)
+        {
+            case States.NONE:
+                target = BaseScene.Instance.aiManager.GetTarget(this);
+                currentState = States.PATH_PORT;
+                break;
+            case States.PATH_PORT:
+                if (navMeshAgent.remainingDistance < 1)
+                {
+                    currentState = States.AT_PORT;
+                }
+                break;
+            case States.AT_PORT:
+                //CHECK PORT HEALTH - ATTACK OR SELECT NEXT TARGET!
+                currentState = States.PATH_PLAYER;
+                currentRoom = Room.RoomType.INSIDE;
+                target = BaseScene.Instance.aiManager.GetTarget(this);
+                break;
+            default:
+                break;
         }
     }
 
