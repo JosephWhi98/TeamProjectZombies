@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Casa.unity
     guid: 9c37f60ea42325740ae784039ee33e4d
+  - enabled: 1
+    path: Assets/_Scenes/CasaCurtis.unity
+    guid: 8b95800a7b29ff64a8e790b6cbb5872a
+  - enabled: 1
+    path: Assets/_Scenes/CasaDale.unity
+    guid: a5d081d5d4c80ac4fb2dbac4e8818540
+  - enabled: 1
+    path: Assets/_Scenes/CasaLiam.unity
+    guid: 1040c298f9eecb94baa775ef7da1bb7b
   m_configObjects: {}

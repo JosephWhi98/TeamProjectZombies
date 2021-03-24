@@ -81,7 +81,7 @@ namespace NetworkingSystems
                 {
                     if (extrapolate)
                     {
-                        float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+                        float lag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));// *2.0f;swear this is needed
                         networkPosition += networkDirection * lag;
                     }
                     distanceDelta = Vector3.Distance(transform.position, networkPosition);
