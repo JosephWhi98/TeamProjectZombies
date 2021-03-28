@@ -7,7 +7,7 @@ using Photon.Pun;
 
 public class AIBase : MonoBehaviourPun
 {
-    public enum States { NONE, PATH_PORT, AT_PORT, PATH_PLAYER, PATH_GENERATOR, AT_GENERATOR };
+    public enum States { NONE, PATH_PORT, AT_PORT, PATH_PLAYER, AT_PLAYER, PATH_GENERATOR, AT_GENERATOR };
 
     public AIType type;
     public States currentState = States.NONE;
@@ -47,7 +47,7 @@ public class AIBase : MonoBehaviourPun
     {
         IDamageable damageable = (IDamageable)target.GetComponent(typeof(IDamageable));
 
-        if (damageable != null && Time.time > nextPossibleAttackTime)
+        if (damageable != null && Time.time > nextPossibleAttackTime && Vector3.Distance(transform.position, target.position) <= 1.5f)
         {
             if (!damageable.IsDead())
             {
@@ -76,6 +76,7 @@ public class AIBase : MonoBehaviourPun
                 currentState = States.PATH_PORT;
                 break;
             case States.PATH_PORT:
+                navMeshAgent.speed = moveSpeed;
                 if (navMeshAgent.remainingDistance < 1)
                 {
                     currentState = States.AT_PORT;
@@ -83,11 +84,32 @@ public class AIBase : MonoBehaviourPun
                 break;
             case States.AT_PORT:
                 //CHECK PORT HEALTH - ATTACK OR SELECT NEXT TARGET!
+                navMeshAgent.speed = 0;
                 if (AttackTarget())
                 {
                     currentState = States.PATH_PLAYER;
                     currentRoom = Room.RoomType.INSIDE;
                     target = BaseScene.Instance.aiManager.GetTarget(this);
+                }
+                break;
+            case States.PATH_PLAYER:
+                navMeshAgent.speed = moveSpeed;
+                if (navMeshAgent.remainingDistance < 1)
+                {
+                    currentState = States.AT_PLAYER;
+                }
+                break;
+            case States.AT_PLAYER:
+                navMeshAgent.speed = 0;
+                if (AttackTarget())
+                {
+                    currentState = States.PATH_PLAYER;
+                    currentRoom = Room.RoomType.INSIDE;
+                    target = BaseScene.Instance.aiManager.GetTarget(this);
+                }
+                else if (navMeshAgent.remainingDistance > 1)
+                {
+                    currentState = States.PATH_PLAYER;
                 }
                 break;
             default:

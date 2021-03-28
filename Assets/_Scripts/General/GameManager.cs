@@ -22,16 +22,38 @@ public class GameManager : MonoBehaviour
         }
         instance = this;
     }
+
     void Start()
     {
         if(PhotonNetwork.InRoom)
             playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber % spawnPoints.Length].position, Quaternion.identity);
     }
+
     public void AddPlayer(Player owner, Transform t)
     {
         if (!players.ContainsKey(owner.ActorNumber))
             players.Add(owner.ActorNumber, new PlayerDetails() { username = owner.NickName, transform = t });
         Debug.Log("New Player Added: " + owner.NickName, t.gameObject);
+    }
+
+    public Transform GetClosestPlayerTransform(Vector3 worldPosition)
+    {
+        float closestDistance = float.MaxValue;
+        Transform closestTransform = null;
+
+
+        foreach (KeyValuePair<int, PlayerDetails> kvp in players)
+        {
+            float dist = Vector3.Distance(worldPosition, kvp.Value.transform.position);
+
+            if (dist < closestDistance)
+            {
+                closestDistance = dist;
+                closestTransform = kvp.Value.transform;
+            }
+        }
+
+        return closestTransform; 
     }
 }
 public class PlayerDetails

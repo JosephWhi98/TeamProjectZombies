@@ -34,15 +34,16 @@ public class AIManager : MonoBehaviour
             case Room.RoomType.OUTSIDE:
                 return GetOutsideTarget();
             case Room.RoomType.INSIDE:
-                return GetInsideTarget();
+                return GetInsideTarget(aiComponent.transform);
         }
 
         return null;
     }
 
-    public Transform GetInsideTarget()
+    public Transform GetInsideTarget(Transform aiTransform)
     {
-        return FindObjectOfType<FirstPersonMovement>().transform; //TODO - this needs to decide which player to target or if it would be best to target the generator. 
+
+        return GameManager.instance.GetClosestPlayerTransform(aiTransform.position); 
     }
 
     public Transform GetOutsideTarget()
