@@ -12,10 +12,22 @@ public class Port : MonoBehaviour, IDamageable
     public Transform entranceTarget;
     public Transform exitTarget;
 
+    public GameObject[] planks;
 
     public void Start() 
     {
         healthComponent = GetComponent<HealthComponent>();
+    }
+
+    public void Update()
+    {
+        float health = healthComponent.Health;
+
+        health = Mathf.Clamp(health, 0, 3);
+
+        planks[0].SetActive(health > 0);
+        planks[0].SetActive(health > 1);
+        planks[0].SetActive(health > 2);
     }
 
 
