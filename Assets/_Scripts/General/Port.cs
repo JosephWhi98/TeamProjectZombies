@@ -23,11 +23,9 @@ public class Port : MonoBehaviour, IDamageable
     {
         float health = healthComponent.Health;
 
-        health = Mathf.Clamp(health, 0, 3);
-
         planks[0].SetActive(health > 0);
-        planks[0].SetActive(health > 1);
-        planks[0].SetActive(health > 2);
+        planks[1].SetActive(health > 1);
+        planks[2].SetActive(health > 2);
     }
 
 

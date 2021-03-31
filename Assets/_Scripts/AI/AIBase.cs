@@ -90,6 +90,7 @@ public class AIBase : MonoBehaviourPun
                 navMeshAgent.speed = moveSpeed;
                 if (navMeshAgent.remainingDistance < 1)
                 {
+                    nextPossibleAttackTime = Time.time + 2f;
                     currentState = States.AT_PORT;
                 }
                 break;
