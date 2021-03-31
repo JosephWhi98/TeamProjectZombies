@@ -21,6 +21,7 @@ MonoBehaviour:
   interpolate: 1
   extrapolate: 1
   crouchController: {fileID: 4305645736844713577}
+  characterMeshFull: {fileID: 306861208218422140}
 --- !u!114 &668733067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +255,11 @@ PrefabInstance:
       propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4473550116293336273, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
 --- !u!1 &4202214272119809575 stripped
@@ -340,3 +346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 780f90e951d635f439326ea715cd97e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &306861208218422140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4473550116293336273, guid: 11aaea5348574644a9eb4f4504fcce3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4203844738910427053}
+  m_PrefabAsset: {fileID: 0}

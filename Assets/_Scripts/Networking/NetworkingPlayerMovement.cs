@@ -9,6 +9,7 @@ namespace NetworkingSystems
     public class NetworkingPlayerMovement : NetworkedTransform
     {
         public Crouch crouchController;
+        public GameObject characterMeshFull;
 
         protected override void OnEnable()
         {
@@ -27,6 +28,7 @@ namespace NetworkingSystems
             }
             else //(photonView.IsMine)
             {
+                characterMeshFull.SetActive(false);
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }
