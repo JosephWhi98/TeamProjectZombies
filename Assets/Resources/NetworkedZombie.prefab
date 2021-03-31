@@ -2843,7 +2843,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents:
-  - {fileID: 0}
+  - {fileID: 5905253407661076004}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2860,8 +2860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   componetsToTurnOff:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5905253407661076003}
+  - {fileID: 5905253407661076006}
   interpolate: 1
   extrapolate: 1
 --- !u!114 &5905253407661076003
