@@ -11,6 +11,8 @@ namespace NetworkingSystems
         public Crouch crouchController;
         public GameObject characterMeshFull;
 
+        public NetworkedAnimatorView networkedAnimator; 
+
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -47,10 +49,12 @@ namespace NetworkingSystems
         private void RPCCrouchStart()
         {
             photonView.RPC("SetIsCrouching", RpcTarget.Others, true);
+            networkedAnimator.AnimatorBool("Crouched", true);
         }
         private void RPCCrouchEnd()
         {
             photonView.RPC("SetIsCrouching", RpcTarget.Others, false);
+            networkedAnimator.AnimatorBool("Crouched", false);
         }
 
         [PunRPC]
