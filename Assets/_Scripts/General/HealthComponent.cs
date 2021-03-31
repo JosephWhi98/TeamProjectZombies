@@ -17,6 +17,7 @@ public class HealthComponent : MonoBehaviour
     {
         Health = startHealth;
     }
+
     public void ChangeHealth(int delta, bool sync = true)
     {
         Health += delta;
@@ -29,11 +30,13 @@ public class HealthComponent : MonoBehaviour
         if (Health <= 0)
             onDied.Invoke();
     }
+
     public void SetHealthAbsolute(int newHealth, bool sync = true)
     {
         int diff = newHealth - Health;
         ChangeHealth(diff, sync);
     }
+
     public bool IsDead()
     {
         return Health <= 0;

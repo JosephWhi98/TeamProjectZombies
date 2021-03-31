@@ -2748,6 +2748,7 @@ GameObject:
   - component: {fileID: 5905253407661076005}
   - component: {fileID: 5905253407661076004}
   - component: {fileID: 5905253407661076003}
+  - component: {fileID: 5553683166756749669}
   m_Layer: 0
   m_Name: NetworkedZombie
   m_TagString: Untagged
@@ -2844,6 +2845,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 5905253407661076004}
+  - {fileID: 5553683166756749669}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2883,9 +2885,24 @@ MonoBehaviour:
   target: {fileID: 0}
   navMeshAgent: {fileID: 5905253407661076006}
   animator: {fileID: 6559752111201714383}
+  animatorNetworked: {fileID: 5553683166756749669}
   hasTarget: 1
   currentRoom: 0
   nextPossibleAttackTime: 0
+--- !u!114 &5553683166756749669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715647140330247032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308db42f4e968f94592bd49e505f44c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 6559752111201714383}
+  animatorTriggers: []
 --- !u!1 &6752234651524366831
 GameObject:
   m_ObjectHideFlags: 0

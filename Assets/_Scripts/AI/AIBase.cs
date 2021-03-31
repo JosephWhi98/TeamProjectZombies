@@ -17,6 +17,7 @@ public class AIBase : MonoBehaviourPun
     public Transform target;
     public NavMeshAgent navMeshAgent;
     public Animator animator; 
+    public NetworkedAnimatorView animatorNetworked;
 
     public bool hasTarget;
 
@@ -62,6 +63,8 @@ public class AIBase : MonoBehaviourPun
             Debug.Log("ATTACK?");
             if (!damageable.IsDead())
             {
+                animatorNetworked.TriggerAnimaton("Attack");
+
                 if (currentState == States.AT_PORT)
                 {
                     damageable.TakeDamage(1);
