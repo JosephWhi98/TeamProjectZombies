@@ -22,6 +22,7 @@ MonoBehaviour:
   extrapolate: 1
   crouchController: {fileID: 4305645736844713577}
   characterMeshFull: {fileID: 306861208218422140}
+  networkedAnimator: {fileID: 1970334134245938390}
 --- !u!114 &668733067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +309,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27b67ddb3d23b8340b125aede56d7e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1970334134245938390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2382130359273309051, guid: 11aaea5348574644a9eb4f4504fcce3f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4203844738910427053}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202214272119809575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308db42f4e968f94592bd49e505f44c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4204388814623808111 stripped
