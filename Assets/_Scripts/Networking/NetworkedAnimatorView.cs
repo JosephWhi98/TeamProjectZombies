@@ -7,11 +7,23 @@ using UnityEngine;
 public class NetworkedAnimatorView : MonoBehaviourPun
 {
     public Animator animator;
+
+    public void AnimatorBool(string name, bool value)
+    {
+        photonView.RPC("SetAnimatorBool", RpcTarget.All, name, value);
+    }
+
+    [PunRPC]
+    public void SetAnimatorBool(string name, bool value)
+    {
+        animator.SetBool(name, value);
+    }
    
     public void TriggerAnimaton(string trigger)
     {
         photonView.RPC("AnimateTrigger", RpcTarget.All, trigger);
     }
+
 
     [PunRPC]
     public void AnimateTrigger(string s)

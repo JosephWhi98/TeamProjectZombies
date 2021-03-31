@@ -37,11 +37,6 @@ public class AIBase : MonoBehaviourPun
         if (target != null)
         {
             navMeshAgent.destination = target.position;
-            animator.SetBool("Walking", true);
-        }
-        else
-        {
-            animator.SetBool("Walking", false);
         }
     }
 
@@ -60,17 +55,16 @@ public class AIBase : MonoBehaviourPun
 
         if (damageable != null && Time.time > nextPossibleAttackTime)
         {
-            Debug.Log("ATTACK?");
             if (!damageable.IsDead())
             {
                 animatorNetworked.TriggerAnimaton("Attack");
 
                 if (currentState == States.AT_PORT)
                 {
-                    damageable.TakeDamage(1);
+                    StartCoroutine(DelayedAttack(1, damageable, 1));
                 }
 
-                nextPossibleAttackTime = Time.time + 2f;
+                nextPossibleAttackTime = Time.time + 4f;
                 return false;
             }
             else
@@ -87,10 +81,11 @@ public class AIBase : MonoBehaviourPun
         {
             case States.NONE:
                 target = BaseScene.Instance.aiManager.GetTarget(this);
+                animatorNetworked.AnimatorBool("Walking", false);
                 currentState = States.PATH_PORT;
                 break;
             case States.PATH_PORT:
-                navMeshAgent.speed = moveSpeed;
+                animatorNetworked.AnimatorBool("Walking", true);
                 if (navMeshAgent.remainingDistance < 1)
                 {
                     nextPossibleAttackTime = Time.time + 2f;
@@ -99,7 +94,7 @@ public class AIBase : MonoBehaviourPun
                 break;
             case States.AT_PORT:
                 //CHECK PORT HEALTH - ATTACK OR SELECT NEXT TARGET!
-                navMeshAgent.speed = 0;
+                animatorNetworked.AnimatorBool("Walking", false);
                 if (AttackTarget())
                 {
                     Port port = target.GetComponentInParent<Port>();
@@ -114,14 +109,14 @@ public class AIBase : MonoBehaviourPun
                 }
                 break;
             case States.PATH_PLAYER:
-                navMeshAgent.speed = moveSpeed;
+                animatorNetworked.AnimatorBool("Walking", true);
                 if (navMeshAgent.remainingDistance < 1)
                 {
                     currentState = States.AT_PLAYER;
                 }
                 break;
             case States.AT_PLAYER:
-                navMeshAgent.speed = 0;
+                animatorNetworked.AnimatorBool("Walking", false);
                 if (AttackTarget())
                 {
                     currentState = States.PATH_PLAYER;
@@ -138,4 +133,12 @@ public class AIBase : MonoBehaviourPun
         }
     }
 
+
+    public IEnumerator DelayedAttack(float delayTime, IDamageable damageable, int damage)
+    {
+        yield return new WaitForSeconds(delayTime);
+
+        if(navMeshAgent.remainingDistance < 1f)
+            damageable.TakeDamage(damage);
+    }
 }
