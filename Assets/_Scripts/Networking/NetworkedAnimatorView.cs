@@ -15,6 +15,7 @@ public class NetworkedAnimatorView : MonoBehaviourPun
         photonView.RPC("AnimateTrigger", RpcTarget.Others, trigger);
     }
 
+    [PunRPC]
     public void AnimateTrigger(string s)
     {
         animator.SetTrigger(s);
