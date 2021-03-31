@@ -43,6 +43,18 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &4777928899672892335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202214272119809575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52cbfc3d7c0eee4c99a09123793122c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7206954359389676333
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +224,36 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 4221874331734337281}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4777928899672892335}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SyncHealthEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 2328463525810691033, guid: 11aaea5348574644a9eb4f4504fcce3f,
+        type: 3}
+      propertyPath: onHealthChangedSync.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11aaea5348574644a9eb4f4504fcce3f, type: 3}
 --- !u!1 &4202214272119809575 stripped

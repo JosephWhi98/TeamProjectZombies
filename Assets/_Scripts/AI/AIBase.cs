@@ -16,6 +16,7 @@ public class AIBase : MonoBehaviourPun
     public float turnSpeed;
     public Transform target;
     public NavMeshAgent navMeshAgent;
+    public Animator animator; 
 
     public bool hasTarget;
 
@@ -35,12 +36,17 @@ public class AIBase : MonoBehaviourPun
         if (target != null)
         {
             navMeshAgent.destination = target.position;
-            navMeshAgent.speed = moveSpeed;
+            animator.SetBool("Walking", true);
         }
         else
         {
-            navMeshAgent.speed = 0;
+            animator.SetBool("Walking", false);
         }
+    }
+
+    void OnAnimatorMove()
+    { 
+        navMeshAgent.speed = (animator.deltaPosition / Time.deltaTime).magnitude;
     }
 
     public bool AttackTarget()

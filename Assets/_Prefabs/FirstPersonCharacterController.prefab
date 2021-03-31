@@ -263,6 +263,8 @@ GameObject:
   - component: {fileID: 114963311885979670}
   - component: {fileID: 114497868231759342}
   - component: {fileID: 114762042097486276}
+  - component: {fileID: 2328463525810691033}
+  - component: {fileID: 5608304716541385084}
   m_Layer: 0
   m_Name: FirstPersonCharacterController
   m_TagString: Untagged
@@ -357,6 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27b67ddb3d23b8340b125aede56d7e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  receiveInput: 1
+  remoteCrouchToggle: 0
   crouchYLocalPosition: 1
   head: {fileID: 4490257326247362}
   defaultHeadYLocalPosition: 0
@@ -364,3 +368,38 @@ MonoBehaviour:
   defaultCapsuleColliderHeight: 0
   groundCheck: {fileID: 114503055206606986}
   keys: 3201000031010000
+--- !u!114 &2328463525810691033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773623360729482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159c4dfce10ef35489763ef99fd74f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 5
+  maxHealth: 5
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthChangedSync:
+    m_PersistentCalls:
+      m_Calls: []
+  onDied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5608304716541385084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773623360729482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d58c71c52c439b47aaf11ed4f0613e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
