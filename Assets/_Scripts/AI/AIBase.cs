@@ -47,8 +47,13 @@ public class AIBase : MonoBehaviourPun
     {
         IDamageable damageable = (IDamageable)target.GetComponent(typeof(IDamageable));
 
-        if (damageable != null && Time.time > nextPossibleAttackTime && Vector3.Distance(transform.position, target.position) <= 1.5f)
+        if(damageable == null)
+            damageable = (IDamageable)(target.parent.GetComponent(typeof(IDamageable)));
+
+
+        if (damageable != null && Time.time > nextPossibleAttackTime)
         {
+            Debug.Log("ATTACK?");
             if (!damageable.IsDead())
             {
                 if (currentState == States.AT_PORT)
@@ -87,6 +92,12 @@ public class AIBase : MonoBehaviourPun
                 navMeshAgent.speed = 0;
                 if (AttackTarget())
                 {
+                    Port port = target.GetComponentInParent<Port>();
+                    if (port)
+                    {
+                        navMeshAgent.Warp(new Vector3(port.exitTarget.position.x, transform.position.y, port.exitTarget.position.z));
+                    }
+
                     currentState = States.PATH_PLAYER;
                     currentRoom = Room.RoomType.INSIDE;
                     target = BaseScene.Instance.aiManager.GetTarget(this);

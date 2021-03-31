@@ -50,7 +50,7 @@ public class AIManager : MonoBehaviour
     {
         //TODO - window target needs to be determined based on how many enemies are already targeting a window. 
         int index = Random.Range(0, BaseScene.Instance.enterancePortals.Length);
-        return BaseScene.Instance.enterancePortals[index].transform;
+        return BaseScene.Instance.enterancePortals[index].entranceTarget;
     }
 
 #if UNITY_EDITOR

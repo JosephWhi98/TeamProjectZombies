@@ -9,7 +9,11 @@ public class Port : MonoBehaviour, IDamageable
 
     public bool Open { get { return IsDead(); } }
 
-    public void Start()
+    public Transform entranceTarget;
+    public Transform exitTarget;
+
+
+    public void Start() 
     {
         healthComponent = GetComponent<HealthComponent>();
     }
