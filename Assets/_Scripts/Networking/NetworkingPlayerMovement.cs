@@ -10,6 +10,7 @@ namespace NetworkingSystems
     {
         public Crouch crouchController;
         public GameObject characterMeshFull;
+        public GameObject characterMeshFPS;
 
         public NetworkedAnimatorView networkedAnimator; 
 
@@ -27,10 +28,15 @@ namespace NetworkingSystems
                 AudioListener al = GetComponentInChildren<AudioListener>(true);
                 if (al)
                     Destroy(al);
+
+                characterMeshFull.SetActive(true);
+                characterMeshFPS.SetActive(false);
+
             }
             else //(photonView.IsMine)
             {
                 characterMeshFull.SetActive(false);
+                characterMeshFPS.SetActive(true);
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }

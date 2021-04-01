@@ -6,6 +6,7 @@ public class FirstPersonMovement : MonoBehaviour
     [HideInInspector] public Vector2 velocity;
 
     public NetworkedAnimatorView networkedAnimator;
+    public Animator firstPersonAnimator;
 
     void FixedUpdate()
     {
@@ -16,10 +17,12 @@ public class FirstPersonMovement : MonoBehaviour
         if (velocity.magnitude > 0)
         {
             networkedAnimator.AnimatorBool("Running", true);
+            firstPersonAnimator.SetBool("Running", true);
         }
         else
         {
             networkedAnimator.AnimatorBool("Running", false);
+            firstPersonAnimator.SetBool("Running", false);
         }
     }
 }
