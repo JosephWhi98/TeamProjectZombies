@@ -12,7 +12,7 @@ public class FirstPersonMovement : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
     }
-    void FixedUpdate()
+    void Update()
     {
         velocity.z = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         velocity.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;

@@ -39,8 +39,6 @@ namespace NetworkingSystems
         {
             firstRecieve = true;
         }
-
-        int lastPLoss;
         protected virtual void Update()
         {
             if (photonView.IsMine)
