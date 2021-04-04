@@ -16,6 +16,7 @@ namespace NetworkingSystems
         protected Quaternion networkRotation;
         protected float distanceDelta;
         protected float angleDelta;
+        protected float lastUpdateTime;
 
         public bool interpolate = true;
         public bool extrapolate = true;
@@ -44,18 +45,14 @@ namespace NetworkingSystems
         {
             if (photonView.IsMine)
             {
-                if (lastPLoss != PhotonNetwork.PacketLossByCrcCheck)
-                {
-                    Debug.LogError("Dropped another: " + PhotonNetwork.PacketLossByCrcCheck);
-                    lastPLoss = PhotonNetwork.PacketLossByCrcCheck;
-                }
                 return;
             }
 
+
             if (interpolate)
             {
-                transform.position = Vector3.MoveTowards(transform.position, networkPosition, distanceDelta * Time.deltaTime * 10.0f); //Time.deltaTime * PhotonNetwork.SerializationRate); //(1.0f / PhotonNetwork.SerializationRate));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * Time.deltaTime * 10.0f); //Time.deltaTime * PhotonNetwork.SerializationRate);//(1.0f / PhotonNetwork.SerializationRate));
+                transform.position = Vector3.Lerp(transform.position, networkPosition, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate); //Time.deltaTime * PhotonNetwork.SerializationRate); //(1.0f / PhotonNetwork.SerializationRate));
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * (1.0f / PhotonNetwork.SerializationRate));
             }
             else
             {
@@ -63,6 +60,11 @@ namespace NetworkingSystems
                 transform.position = networkPosition;
                 transform.rotation = networkRotation;
             }
+        }
+        void OnGUI()
+        {
+            if (!photonView.IsMine)
+                GUI.Label(new Rect(10, 10, 100, 20), ((Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate).ToString("F2"));
         }
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -77,6 +79,7 @@ namespace NetworkingSystems
             }
             else
             {
+                lastUpdateTime = Time.time;
                 networkPosition = (Vector3)stream.ReceiveNext();
                 networkDirection = (Vector3)stream.ReceiveNext();
 
@@ -109,9 +112,13 @@ namespace NetworkingSystems
 
                 if (firstRecieve)
                     firstRecieve = false;
-
             }
         }
 
+        public static Vector3 Lerp(Vector3 v0, Vector3 v1, float t)
+        {
+            return (1 - t) * v0 + t * v1;
+
+        }
     }
 }

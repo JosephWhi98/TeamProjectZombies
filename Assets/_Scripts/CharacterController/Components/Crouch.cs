@@ -10,7 +10,7 @@ public class Crouch : MonoBehaviour
     public float defaultHeadYLocalPosition;
 
     [Tooltip("Capsule collider to lower when we crouch.\nCan be empty.")]
-    public CapsuleCollider capsuleCollider;
+    public CharacterController capsuleCollider;
     [HideInInspector]
     public float defaultCapsuleColliderHeight;
 
@@ -26,7 +26,7 @@ public class Crouch : MonoBehaviour
     {
         head = GetComponentInChildren<Camera>().transform;
 
-        capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+        capsuleCollider = GetComponentInChildren<CharacterController>();
 
         // Get or create the groundCheck object.
         groundCheck = GetComponentInChildren<GroundCheck>();

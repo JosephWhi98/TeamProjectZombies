@@ -21,8 +21,8 @@ namespace NetworkingSystems
             if (!photonView.IsMine)
             {
                 //DISABLE PLAYER INPUT SYSTEMS
-                if (TryGetComponent(out Rigidbody rb))
-                    rb.isKinematic = true;
+                //if (TryGetComponent(out Rigidbody rb))
+                    //rb.isKinematic = true;
                 crouchController.receiveInput = false;
 
                 AudioListener al = GetComponentInChildren<AudioListener>(true);
