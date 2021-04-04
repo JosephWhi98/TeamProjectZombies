@@ -55,18 +55,17 @@ namespace NetworkingSystems
         private void RPCCrouchStart()
         {
             photonView.RPC("SetIsCrouching", RpcTarget.Others, true);
-            networkedAnimator.AnimatorBool("Crouched", true);
         }
         private void RPCCrouchEnd()
         {
             photonView.RPC("SetIsCrouching", RpcTarget.Others, false);
-            networkedAnimator.AnimatorBool("Crouched", false);
         }
 
         [PunRPC]
         public void SetIsCrouching(bool v)
         {
             crouchController.remoteCrouchToggle = v;
+            networkedAnimator.SetAnimatorBool("Crouched", v);
         }
     }
 }

@@ -39,15 +39,23 @@ namespace NetworkingSystems
             firstRecieve = true;
         }
 
+        int lastPLoss;
         protected virtual void Update()
         {
             if (photonView.IsMine)
+            {
+                if (lastPLoss != PhotonNetwork.PacketLossByCrcCheck)
+                {
+                    Debug.LogError("Dropped another: " + PhotonNetwork.PacketLossByCrcCheck);
+                    lastPLoss = PhotonNetwork.PacketLossByCrcCheck;
+                }
                 return;
+            }
 
             if (interpolate)
             {
-                transform.position = Vector3.MoveTowards(transform.position, networkPosition, distanceDelta * (1.0f / PhotonNetwork.SerializationRate));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * (1.0f / PhotonNetwork.SerializationRate));
+                transform.position = Vector3.MoveTowards(transform.position, networkPosition, distanceDelta * Time.deltaTime * 10.0f); //Time.deltaTime * PhotonNetwork.SerializationRate); //(1.0f / PhotonNetwork.SerializationRate));
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * Time.deltaTime * 10.0f); //Time.deltaTime * PhotonNetwork.SerializationRate);//(1.0f / PhotonNetwork.SerializationRate));
             }
             else
             {
