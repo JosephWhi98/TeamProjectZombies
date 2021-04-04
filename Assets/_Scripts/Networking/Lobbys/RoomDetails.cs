@@ -66,7 +66,7 @@ namespace NetworkingSystems
         {
             if (!PhotonNetwork.IsMasterClient)
                 return;
-
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             SceneManager.LoadScene(sceneName);
         }
         private void Update()
