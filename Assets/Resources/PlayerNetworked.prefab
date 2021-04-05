@@ -4601,6 +4601,11 @@ PrefabInstance:
       propertyPath: currentMag
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5632588024946345994, guid: 2f4839e0152a1422f881385121af0bbb,
+        type: 3}
+      propertyPath: firstPersonAnimator
+      value: 
+      objectReference: {fileID: 2625454880149763802}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f4839e0152a1422f881385121af0bbb, type: 3}
 --- !u!4 &6474412789758134068 stripped

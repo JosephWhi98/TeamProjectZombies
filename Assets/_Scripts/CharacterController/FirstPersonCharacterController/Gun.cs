@@ -16,6 +16,8 @@ public class Gun : MonoBehaviour
 
     private bool isReloading = false;
 
+    public Animator firstPersonAnimator;
+
     void Awake()
     {
         StartCoroutine(Reload());
@@ -40,6 +42,9 @@ public class Gun : MonoBehaviour
 
         if (currentMag > 0)
         {
+            if(firstPersonAnimator)
+                firstPersonAnimator.SetTrigger("Fire");
+
             currentMag -= 1;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
             {
