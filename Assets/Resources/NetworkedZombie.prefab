@@ -2749,6 +2749,9 @@ GameObject:
   - component: {fileID: 5905253407661076004}
   - component: {fileID: 5905253407661076003}
   - component: {fileID: 5553683166756749669}
+  - component: {fileID: 4355927632364406679}
+  - component: {fileID: 8955169522656949247}
+  - component: {fileID: 7978715222639314736}
   m_Layer: 0
   m_Name: NetworkedZombie
   m_TagString: Untagged
@@ -2901,6 +2904,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6559752111201714383}
+--- !u!114 &4355927632364406679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715647140330247032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159c4dfce10ef35489763ef99fd74f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 25
+  maxHealth: 25
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthChangedSync:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7978715222639314736}
+        m_MethodName: SyncHealthEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDied:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8955169522656949247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715647140330247032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d26642058e9c7b4f872625b8e639f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7978715222639314736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6715647140330247032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52cbfc3d7c0eee4c99a09123793122c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6752234651524366831
 GameObject:
   m_ObjectHideFlags: 0

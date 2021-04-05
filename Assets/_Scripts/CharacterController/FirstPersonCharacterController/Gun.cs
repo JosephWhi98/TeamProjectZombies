@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Gun : MonoBehaviour
 {
-    public float damage = 10f;
+    public int damage = 10;
     public float range = 100f;
     public float fireRate = 1;
 
@@ -21,7 +21,6 @@ public class Gun : MonoBehaviour
         StartCoroutine(Reload());
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -54,7 +53,6 @@ public class Gun : MonoBehaviour
             Debug.Log("Current: " + currentMag + "  " + "Total Ammo: " + totalAmmo);
 
         }
-
         else
         {
             Reload();

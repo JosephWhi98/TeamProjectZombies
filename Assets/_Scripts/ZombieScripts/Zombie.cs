@@ -1,17 +1,37 @@
 ﻿using UnityEngine;
 
-public class Zombie : MonoBehaviour
+[RequireComponent(typeof(HealthComponent))]
+public class Zombie : MonoBehaviour, IDamageable
 {
-    public float health = 50f;
-    
-    public void TakeDamage(float amntDamage)
-    {
-        health -= amntDamage;
+    private HealthComponent healthComponent;
+    private bool hasTriggeredDeath; 
 
-        if (health <= 0f)
+    public void Awake()
+    {
+        healthComponent = GetComponent<HealthComponent>();
+    }
+
+    public void Update()
+    {
+        if (IsDead() && !hasTriggeredDeath)
         {
             Die();
+            hasTriggeredDeath = true; 
         }
+    }
+
+    public void TakeDamage(int amntDamage)
+    {
+        if (!hasTriggeredDeath)
+        {
+            healthComponent.ChangeHealth(-amntDamage);
+        }
+    }
+
+
+    public bool IsDead()
+    {
+        return healthComponent.IsDead();
     }
 
     void Die()
