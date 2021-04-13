@@ -3,7 +3,7 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
     public GameObject playerPrefab;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if(PhotonNetwork.InRoom)
+        if (PhotonNetwork.InRoom)
             playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber % spawnPoints.Length].position, Quaternion.identity);
     }
 
@@ -53,7 +53,17 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        return closestTransform; 
+        return closestTransform;
+    }
+    public override void OnPlayerLeftRoom(Player p)
+    {
+        base.OnPlayerLeftRoom(p);
+        if (players.TryGetValue(p.ActorNumber, out PlayerDetails v))
+        {
+            Debug.Log("Player " + v.username + " has left the lobby");
+            Destroy(v.transform.gameObject);
+            players.Remove(p.ActorNumber);
+        }
     }
 }
 public class PlayerDetails

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace NetworkingSystems
 {
-    public class RoomDetails : MonoBehaviourPunCallbacks
+    public class RoomDetails : MonoBehaviour
     {
         byte lastmaxPlayers;
         bool lastIsOpen = false;
@@ -30,7 +30,7 @@ namespace NetworkingSystems
             this.sceneName = ((Maps)0).ToString();
 
         }
-        public override void OnEnable()
+        public void OnEnable()
         {
             if (!PhotonNetwork.IsMasterClient)
             {
@@ -78,7 +78,7 @@ namespace NetworkingSystems
                 maxPlayersInput.SetTextWithoutNotify(PhotonNetwork.CurrentRoom.MaxPlayers.ToString());
                 lastmaxPlayers = PhotonNetwork.CurrentRoom.MaxPlayers;
             }
-            if(PhotonNetwork.CurrentRoom.IsVisible != lastIsOpen)
+            if (PhotonNetwork.CurrentRoom.IsVisible != lastIsOpen)
             {
                 isOpenInput.isOn = PhotonNetwork.CurrentRoom.IsVisible;
                 lastIsOpen = PhotonNetwork.CurrentRoom.IsVisible;
