@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Pun;
+using System;
+using Photon.Pun.Demo.Asteroids;
 
 public class Gun : MonoBehaviour
 {
@@ -17,6 +20,8 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
 
     public Animator firstPersonAnimator;
+
+    public event Action<FireEvent> fired;
 
     void Awake()
     {
@@ -42,8 +47,9 @@ public class Gun : MonoBehaviour
 
         if (currentMag > 0)
         {
-            if(firstPersonAnimator)
+            if (firstPersonAnimator)
                 firstPersonAnimator.SetTrigger("Fire");
+
 
             currentMag -= 1;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -53,8 +59,10 @@ public class Gun : MonoBehaviour
                 {
                     zombie.TakeDamage(damage);
                 }
+                fired?.Invoke(new FireEvent() { hitLocation = hit.point });
             }
-
+            else
+                fired?.Invoke(new FireEvent() { hitLocation = null });
             Debug.Log("Current: " + currentMag + "  " + "Total Ammo: " + totalAmmo);
 
         }
@@ -89,4 +97,9 @@ public class Gun : MonoBehaviour
 
         isReloading = false;
     }
+}
+
+public class FireEvent
+{
+    public Vector3? hitLocation;
 }

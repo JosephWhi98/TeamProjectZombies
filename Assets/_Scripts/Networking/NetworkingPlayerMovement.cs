@@ -12,7 +12,8 @@ namespace NetworkingSystems
         public GameObject characterMeshFull;
         public GameObject characterMeshFPS;
 
-        public NetworkedAnimatorView networkedAnimator; 
+        public NetworkedAnimatorView networkedAnimator;
+        public NetworkWeaponFire networkWeaponFire;
 
         protected override void OnEnable()
         {
@@ -22,7 +23,7 @@ namespace NetworkingSystems
             {
                 //DISABLE PLAYER INPUT SYSTEMS
                 //if (TryGetComponent(out Rigidbody rb))
-                    //rb.isKinematic = true;
+                //rb.isKinematic = true;
                 crouchController.receiveInput = false;
 
                 AudioListener al = GetComponentInChildren<AudioListener>(true);
@@ -40,9 +41,9 @@ namespace NetworkingSystems
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }
-
+            networkWeaponFire.Enable();
             GameManager.instance.AddPlayer(photonView.Owner, gameObject.transform);
-               
+
         }
         private void OnDisable()
         {
