@@ -19,6 +19,7 @@ abstract public class Gun : MonoBehaviour
 
     private bool isReloading = false;
     private bool canFire = true;
+    private float nextFireTime; 
 
     public Animator firstPersonAnimator;
 
@@ -31,9 +32,10 @@ abstract public class Gun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButton("Fire1") && isReloading == false)
         {
-            Shoot();
+            if(Time.time > nextFireTime)
+                Shoot();
         }
 
         if (Input.GetButtonDown("Reload") && isReloading == false)
@@ -44,9 +46,11 @@ abstract public class Gun : MonoBehaviour
 
     void Shoot()
     {
+        nextFireTime = Time.time + (1/fireRate); 
+
         RaycastHit hit;
 
-        if (currentMag > 0 && canFire)
+        if (currentMag > 0)
         {
 
             currentMag -= 1;
@@ -64,8 +68,7 @@ abstract public class Gun : MonoBehaviour
             Debug.Log("Current: " + currentMag + "  " + "Total Ammo: " + totalAmmo);
 
         }
-        
-        StartCoroutine(CheckFire());
+       
     }
 
     IEnumerator Reload()
@@ -94,13 +97,6 @@ abstract public class Gun : MonoBehaviour
         }
 
         isReloading = false;
-    }
-
-    IEnumerator CheckFire()
-    {
-        canFire = false;
-        yield return new WaitForSeconds(fireRate);
-        canFire = true;
     }
 }
 

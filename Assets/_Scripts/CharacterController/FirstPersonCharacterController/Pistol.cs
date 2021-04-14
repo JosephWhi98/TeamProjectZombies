@@ -11,7 +11,7 @@ public class Pistol : Gun
     {
         damage = 10;
         range = 100f;
-        fireRate = 2;
+        fireRate = 4;
 
         totalAmmo = 45;
         currentMag = 0;
