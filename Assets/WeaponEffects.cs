@@ -5,11 +5,18 @@ using UnityEngine;
 public class WeaponEffects : MonoBehaviour
 {
     public Light flash;
+    public Animator firstPersonAnimator;
+    public NetworkedAnimatorView thirdPersonAnimator;
+
     public void DrawWeaponEffects()
     {
-        flash.enabled = true;
-        StartCoroutine(DisableWeaponEffects());
+        if (firstPersonAnimator)
+            firstPersonAnimator.SetTrigger("Fire");
+
+        if (thirdPersonAnimator)
+            thirdPersonAnimator.TriggerAnimaton("Fire");
     }
+
     IEnumerator DisableWeaponEffects()
     {
         yield return new WaitForSeconds(0.1f);

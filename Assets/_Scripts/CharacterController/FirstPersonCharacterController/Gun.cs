@@ -48,9 +48,6 @@ abstract public class Gun : MonoBehaviour
 
         if (currentMag > 0 && canFire)
         {
-            if (firstPersonAnimator)
-                firstPersonAnimator.SetTrigger("Fire");
-
 
             currentMag -= 1;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
