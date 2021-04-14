@@ -4,7 +4,7 @@ using Photon.Pun;
 using System;
 using Photon.Pun.Demo.Asteroids;
 
-public class Gun : MonoBehaviour
+abstract public class Gun : MonoBehaviour
 {
     public int damage = 10;
     public float range = 100f;
@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
     public Camera fpsCam;
 
     private bool isReloading = false;
+    private bool canFire = true;
 
     public Animator firstPersonAnimator;
 
@@ -45,7 +46,7 @@ public class Gun : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (currentMag > 0)
+        if (currentMag > 0 && canFire)
         {
             if (firstPersonAnimator)
                 firstPersonAnimator.SetTrigger("Fire");
@@ -66,14 +67,14 @@ public class Gun : MonoBehaviour
             Debug.Log("Current: " + currentMag + "  " + "Total Ammo: " + totalAmmo);
 
         }
-        else
-        {
-            Reload();
-        }
+        
+        StartCoroutine(CheckFire());
     }
 
     IEnumerator Reload()
     {
+        Debug.Log("Reloading!");
+
         isReloading = true;
         yield return new WaitForSeconds(reloadTime);
 
@@ -97,7 +98,16 @@ public class Gun : MonoBehaviour
 
         isReloading = false;
     }
+
+    IEnumerator CheckFire()
+    {
+        canFire = false;
+        yield return new WaitForSeconds(fireRate);
+        canFire = true;
+    }
 }
+
+
 
 public class FireEvent
 {

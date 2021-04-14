@@ -138,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6643670546157058803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15d42e6651793024a8b305e6a4bae6d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c97b962636a6cc41afc0da5bcbd75c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
@@ -148,7 +148,8 @@ MonoBehaviour:
   currentMag: 0
   maxMag: 10
   reloadTime: 1
-  fpsCam: {fileID: 2064120889}
+  fpsCam: {fileID: 0}
+  firstPersonAnimator: {fileID: 0}
 --- !u!143 &906026242
 CharacterController:
   m_ObjectHideFlags: 0
@@ -459,17 +460,23 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5565b48d17c472d4c91327b74a82211f,
         type: 3}
       propertyPath: m_Name
-      value: PlayerCharacterRig[Final]
+      value: PlayerCharacterRig[Final] Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 5565b48d17c472d4c91327b74a82211f,
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 9643ad3ef317f8b4297796e875be6bff, type: 2}
     - target: {fileID: 5866666021909216657, guid: 5565b48d17c472d4c91327b74a82211f,
         type: 3}
       propertyPath: m_WarningMessage
-      value: 
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'PC_Spine'\n\tTransform 'PC_RightArm'\n\tTransform
+        'PC_LeftHandRing1'\n\tTransform 'PC_LeftHand'\n\tTransform 'PC_RightHand'\n\tTransform
+        'PC_RightForeArm'\n\tTransform 'PC_LeftHandIndex2'\n\tTransform 'PC_RightHandMiddle3'\n\tTransform
+        'PC_RightShoulder'\n\tTransform 'PC_LeftForeArm'\n\tand more ...\n\tFrom
+        animation clip 'PistolIdle 1'\n\tFrom animation clip 'PistolFireFPS'"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5565b48d17c472d4c91327b74a82211f, type: 3}
