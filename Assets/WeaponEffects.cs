@@ -7,6 +7,8 @@ public class WeaponEffects : MonoBehaviour
     public Light flash;
     public Animator firstPersonAnimator;
     public NetworkedAnimatorView thirdPersonAnimator;
+    public AudioSource source;
+    public AudioClip gunShotClip;
 
     public void DrawWeaponEffects()
     {
@@ -15,6 +17,7 @@ public class WeaponEffects : MonoBehaviour
 
         if (thirdPersonAnimator)
             thirdPersonAnimator.TriggerAnimaton("Fire");
+
     }
 
     IEnumerator DisableWeaponEffects()

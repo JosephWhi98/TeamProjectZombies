@@ -26,12 +26,14 @@ public class Port : MonoBehaviour, IDamageable
         planks[0].SetActive(health > 0);
         planks[1].SetActive(health > 1);
         planks[2].SetActive(health > 2);
+
+
     }
 
 
-    public void TakeDamage(int damage = 1)
+    public void TakeDamage(int damage = 1) 
     {
-        healthComponent.ChangeHealth(-damage);
+         healthComponent.ChangeHealth(-damage);  
     }
 
     public bool IsDead()
