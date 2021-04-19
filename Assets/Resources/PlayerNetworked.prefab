@@ -1575,7 +1575,6 @@ MonoBehaviour:
   characterMeshFull: {fileID: 306861208218422140}
   characterMeshFPS: {fileID: 2582560400234458122}
   networkedAnimator: {fileID: 1970334134245938390}
-  networkWeaponFire: {fileID: 0}
 --- !u!114 &668733067
 MonoBehaviour:
   m_ObjectHideFlags: 0

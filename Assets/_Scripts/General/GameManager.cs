@@ -2,6 +2,7 @@
 using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     //ActorNumber, Details.
     public Dictionary<int, PlayerDetails> players = new Dictionary<int, PlayerDetails>();
+
+    public float pos;
 
     private void Awake()
     {
@@ -58,12 +61,20 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player p)
     {
         base.OnPlayerLeftRoom(p);
+        Debug.Log("Player " + p.NickName + " has left the lobby");
         if (players.TryGetValue(p.ActorNumber, out PlayerDetails v))
         {
-            Debug.Log("Player " + v.username + " has left the lobby");
+
+            Debug.Log("Player " + v.username + " removed from list");
             Destroy(v.transform.gameObject);
             players.Remove(p.ActorNumber);
         }
+    }
+
+    [ContextMenu("Leave")]
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 }
 public class PlayerDetails
