@@ -18,10 +18,10 @@ public class NetworkedAnimatorView : MonoBehaviourPun
     {
         animator.SetBool(name, value);
     }
-   
-    public void TriggerAnimaton(string trigger)
+
+    public void TriggerAnimaton(string trigger, bool onlyOthers = false)
     {
-        photonView.RPC("AnimateTrigger", RpcTarget.All, trigger);
+        photonView.RPC("AnimateTrigger", onlyOthers ? RpcTarget.Others : RpcTarget.All, trigger);
     }
 
 

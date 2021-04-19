@@ -26,12 +26,12 @@ public class NetworkWeaponFire : MonoBehaviour
     public void TriggerWeaponFire(FireEvent e)
     {
         FireEffects();
-        photonView.RPC("FireEffects", RpcTarget.Others);
+        //photonView.RPC("FireEffects", RpcTarget.Others);
     }
 
     [PunRPC]
     public void FireEffects()
     {
-        effects.DrawWeaponEffects();
+        //effects.DrawWeaponEffects();
     }
 }
