@@ -13,7 +13,6 @@ namespace NetworkingSystems
         public GameObject characterMeshFPS;
 
         public NetworkedAnimatorView networkedAnimator;
-        public NetworkWeaponFire networkWeaponFire;
 
         protected override void OnEnable()
         {
@@ -41,7 +40,6 @@ namespace NetworkingSystems
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }
-            networkWeaponFire.Enable();
             GameManager.instance.AddPlayer(photonView.Owner, gameObject.transform);
 
         }
