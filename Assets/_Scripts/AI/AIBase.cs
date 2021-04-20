@@ -16,7 +16,7 @@ public class AIBase : MonoBehaviourPun
     public float turnSpeed;
     public Transform target;
     public NavMeshAgent navMeshAgent;
-    public Animator animator; 
+    public Animator animator;
     public NetworkedAnimatorView animatorNetworked;
 
     public bool hasTarget;
@@ -41,15 +41,21 @@ public class AIBase : MonoBehaviourPun
     }
 
     void OnAnimatorMove()
-    { 
+    {
         navMeshAgent.speed = (animator.deltaPosition / Time.deltaTime).magnitude;
     }
 
     public bool AttackTarget()
     {
+        if (target == null)
+        {
+            Debug.LogError("Target no longer exists");
+            return false;//find new target??
+        }
+
         IDamageable damageable = (IDamageable)target.GetComponent(typeof(IDamageable));
 
-        if(damageable == null)
+        if (damageable == null)
             damageable = (IDamageable)(target.parent.GetComponent(typeof(IDamageable)));
 
 
@@ -59,7 +65,7 @@ public class AIBase : MonoBehaviourPun
             {
                 animatorNetworked.TriggerAnimaton("Attack");
 
-                if (currentState == States.AT_PORT)
+                if (currentState == States.AT_PORT || currentState == States.AT_PLAYER)
                 {
                     StartCoroutine(DelayedAttack(1, damageable, 1));
                 }
@@ -72,7 +78,7 @@ public class AIBase : MonoBehaviourPun
                 return true;
             }
         }
-        return false; 
+        return false;
     }
 
     public void HandleStates()
@@ -138,7 +144,7 @@ public class AIBase : MonoBehaviourPun
     {
         yield return new WaitForSeconds(delayTime);
 
-        if(navMeshAgent.remainingDistance < 1f)
+        if (navMeshAgent.remainingDistance < 1f)
             damageable.TakeDamage(damage);
     }
 }

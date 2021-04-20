@@ -24,11 +24,15 @@ public class HealthComponent : MonoBehaviour
         onHealthChanged.Invoke(delta);
         if (sync)
             onHealthChangedSync.Invoke(delta);
-        Debug.Log(Health);
+
         Health = Mathf.Clamp(Health, 0, maxHealth);
 
+        Debug.Log(gameObject.name + "'s HP = " + Health);
+
         if (Health <= 0)
+        {
             onDied.Invoke();
+        }
     }
 
     public void SetHealthAbsolute(int newHealth, bool sync = true)
@@ -36,7 +40,16 @@ public class HealthComponent : MonoBehaviour
         int diff = newHealth - Health;
         ChangeHealth(diff, sync);
     }
-
+    [ContextMenu("LogHealth")]
+    public void LogHealth()
+    {
+        Debug.Log(Health);
+    }
+    [ContextMenu("KillNetworked")]
+    public void Kill()
+    {
+        SetHealthAbsolute(0);
+    }
     public bool IsDead()
     {
         return Health <= 0;

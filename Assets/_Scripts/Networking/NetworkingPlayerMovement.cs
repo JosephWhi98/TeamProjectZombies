@@ -17,21 +17,13 @@ namespace NetworkingSystems
         protected override void OnEnable()
         {
             base.OnEnable();
-
+            gameObject.name = photonView.Owner.NickName;
             if (!photonView.IsMine)
-            {
-                //DISABLE PLAYER INPUT SYSTEMS
-                //if (TryGetComponent(out Rigidbody rb))
-                //rb.isKinematic = true;
+            {   //DISABLE PLAYER INPUT SYSTEMS
                 crouchController.receiveInput = false;
-
-                AudioListener al = GetComponentInChildren<AudioListener>(true);
-                if (al)
-                    Destroy(al);
 
                 characterMeshFull.SetActive(true);
                 characterMeshFPS.SetActive(false);
-
             }
             else //(photonView.IsMine)
             {
@@ -40,8 +32,11 @@ namespace NetworkingSystems
                 crouchController.CrouchStart += RPCCrouchStart;
                 crouchController.CrouchEnd += RPCCrouchEnd;
             }
+        }
+        protected override void Start()
+        {
+            base.Start();
             GameManager.instance.AddPlayer(photonView.Owner, gameObject.transform);
-
         }
         private void OnDisable()
         {
@@ -51,6 +46,13 @@ namespace NetworkingSystems
                 crouchController.CrouchEnd -= RPCCrouchEnd;
             }
         }
+
+        void OnGUI()
+        {
+            if (photonView.IsMine)
+                GUI.Label(new Rect(10, 10, 100, 20), ((Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate).ToString("F2"));
+        }
+
         private void RPCCrouchStart()
         {
             photonView.RPC("SetIsCrouching", RpcTarget.Others, true);

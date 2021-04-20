@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
     public GameObject playerPrefab;
+    public DeathHandler localDeathHandler;
     public static GameObject playerInstance;
     public Transform[] spawnPoints;
 
@@ -29,14 +30,36 @@ public class GameManager : MonoBehaviourPunCallbacks
     void Start()
     {
         if (PhotonNetwork.InRoom)
+        {
             playerInstance = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoints[PhotonNetwork.LocalPlayer.ActorNumber % spawnPoints.Length].position, Quaternion.identity);
+            localDeathHandler = playerInstance.GetComponent<DeathHandler>();
+        }
+    }
+
+    private void Update()
+    {
+        if (localDeathHandler.isDead)
+        {
+            if (Input.GetMouseButtonDown(0))
+                localDeathHandler.SetNewSpectator(1);
+            if (Input.GetMouseButtonDown(1))
+                localDeathHandler.SetNewSpectator(-1);
+        }
     }
 
     public void AddPlayer(Player owner, Transform t)
     {
         if (!players.ContainsKey(owner.ActorNumber))
+        {
             players.Add(owner.ActorNumber, new PlayerDetails() { username = owner.NickName, transform = t });
+            localDeathHandler.AddLivePlayers(owner.ActorNumber);
+        }
         Debug.Log("New Player Added: " + owner.NickName, t.gameObject);
+
+    }
+    public void OnPlayerDeath(int id)
+    {
+        localDeathHandler?.RemovePlayer(id);
     }
 
     public Transform GetClosestPlayerTransform(Vector3 worldPosition)
