@@ -8,7 +8,7 @@ using UnityEngine;
 public class DeathHandler : MonoBehaviour
 {
     public Camera playerCam;
-    Transform audioListener;
+    private Transform audioListener;
 
     private DeathHandler spectating;
     [SerializeField] private PhotonView photonView;
@@ -18,17 +18,14 @@ public class DeathHandler : MonoBehaviour
     private int spectatingPlayer = 0;
     [SerializeField] List<int> livePlayers;
 
-    //currently no handling for spectated player death;
-
     private void Start()
     {
         spectating = this;
-        audioListener = FindObjectOfType<AudioListener>().transform;
+
         if (photonView.IsMine)
         {
-            audioListener.parent = playerCam.transform;
-            audioListener.localPosition = Vector3.zero;
-            audioListener.localRotation = Quaternion.identity;
+            audioListener = FindObjectOfType<AudioListener>().transform;
+            MoveAudioListenerToSpectating();
         }
     }
 
@@ -74,6 +71,10 @@ public class DeathHandler : MonoBehaviour
 
         spectating.playerCam.enabled = true;
 
+        MoveAudioListenerToSpectating();
+    }
+    public void MoveAudioListenerToSpectating()
+    {
         audioListener.parent = spectating.playerCam.transform;
         audioListener.localPosition = Vector3.zero;
         audioListener.localRotation = Quaternion.identity;

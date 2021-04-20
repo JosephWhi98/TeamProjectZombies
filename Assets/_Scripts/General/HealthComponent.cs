@@ -30,9 +30,8 @@ public class HealthComponent : MonoBehaviour
         Debug.Log(gameObject.name + "'s HP = " + Health);
 
         if (Health <= 0)
-        {
             onDied.Invoke();
-        }
+
     }
 
     public void SetHealthAbsolute(int newHealth, bool sync = true)
