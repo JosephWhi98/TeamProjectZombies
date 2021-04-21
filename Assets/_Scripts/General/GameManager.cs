@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         {
             float dist = Vector3.Distance(worldPosition, kvp.Value.transform.position);
 
-            if (dist < closestDistance)
+            if (dist < closestDistance && kvp.Value.transform.gameObject.activeInHierarchy)
             {
                 closestDistance = dist;
                 closestTransform = kvp.Value.transform;

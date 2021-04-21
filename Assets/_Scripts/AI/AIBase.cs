@@ -47,7 +47,7 @@ public class AIBase : MonoBehaviourPun
 
     public bool AttackTarget()
     {
-        if (target == null)
+        if (target == null || target.gameObject.activeInHierarchy == false)
         {
             Debug.LogError("Target no longer exists");
             return false;//find new target??
