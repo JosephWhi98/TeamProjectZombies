@@ -49,7 +49,9 @@ public class AIBase : MonoBehaviourPun
     {
         if (target == null || target.gameObject.activeInHierarchy == false)
         {
-            Debug.LogError("Target no longer exists");
+            Debug.Log("Target no longer exists");
+            target = BaseScene.Instance.aiManager.GetTarget(this);
+            currentState = States.PATH_PLAYER;
             return false;//find new target??
         }
 

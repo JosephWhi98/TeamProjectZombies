@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (localDeathHandler.isDead)
+        if (localDeathHandler != null && localDeathHandler.isDead) //needs new death handler for solo queue to just end the game
         {
             if (Input.GetMouseButtonDown(0))
                 localDeathHandler.SetNewSpectator(1);

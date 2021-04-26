@@ -21,8 +21,6 @@ public class InputHandler : MonoBehaviour
     void GetInteractionInputData()
     {
         interactionInputData.interactedClicked = Input.GetKeyDown(KeyCode.E);
-        Debug.Log("E key pressed" + " " + interactionInputData.InteractedClicked);
         interactionInputData.interactedRelease = Input.GetKeyUp(KeyCode.E);
-        Debug.Log("E key released" + " " + interactionInputData.InteractedRelease);
     }
 }

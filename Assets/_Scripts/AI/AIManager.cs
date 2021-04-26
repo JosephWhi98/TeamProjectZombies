@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Photon.Pun;
 
 public enum AIType { ZOMBIE, };
 public class AIManager : MonoBehaviour
@@ -20,6 +21,8 @@ public class AIManager : MonoBehaviour
     public void Awake()
     {
         baseAIComponents = new List<AIBase>();
+        if (!PhotonNetwork.IsMasterClient)
+            enabled = false;
     }
 
     private void Start()
@@ -32,7 +35,7 @@ public class AIManager : MonoBehaviour
     public void SpawnNewAI(AIType aiType)
     {
         Transform spawnPoint = aiSpawnPositions[Random.Range(0, aiSpawnPositions.Length)];
-        baseAIComponents.Add( aiSpawner.Spawn(aiType, spawnPoint.position) );
+        baseAIComponents.Add(aiSpawner.Spawn(aiType, spawnPoint.position));
     }
 
     public Transform GetTarget(AIBase aiComponent)
@@ -50,8 +53,7 @@ public class AIManager : MonoBehaviour
 
     public Transform GetInsideTarget(Transform aiTransform)
     {
-
-        return GameManager.instance.GetClosestPlayerTransform(aiTransform.position); 
+        return GameManager.instance.GetClosestPlayerTransform(aiTransform.position);
     }
 
     public Transform GetOutsideTarget()
@@ -90,7 +92,6 @@ public class AIManager : MonoBehaviour
             StartCoroutine(Wait());
         }
     }
-
     private IEnumerator Wait()
     {
         enemiesKilled = 0;
