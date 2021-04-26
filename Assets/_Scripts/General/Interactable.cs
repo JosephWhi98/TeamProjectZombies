@@ -13,11 +13,12 @@ public enum EPickupType
 
 public class Interactable : MonoBehaviour
 {
-    public GameObject Plank;
-    public GameObject PickupPlanksText;
-    public RaycastHit Hit;
-    public bool hasPlanks;
-    public EPickupType pickupType = EPickupType.EPT_Planks;
+    //public GameObject Plank;
+    //public GameObject PickupPlanksText;
+    //public RaycastHit Hit;
+    //public bool hasPlanks;
+    public EPickupType pickupType = EPickupType.EPT_Ammo;
+    public float amount = 14; 
 
 
 }

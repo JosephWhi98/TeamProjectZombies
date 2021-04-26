@@ -16,10 +16,6 @@ public class FirstPersonController : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
-    public Camera fpsCamera = null;
-    public float pickupDistance = 100.0f;
-    public Interactable sensedObj = null;
-
     // Update is called once per frame
     void Update()
     {
@@ -46,35 +42,6 @@ public class FirstPersonController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        Ray ray = fpsCamera.ScreenPointToRay(Input.mousePosition); // Where the mouse is looking towards
-        RaycastHit hit;
-
-        Debug.DrawRay(ray.origin, ray.direction * pickupDistance, Color.red);
-
-        if (Physics.Raycast(ray, out hit, pickupDistance))
-        {
-            //if an object is detected 
-            Interactable obj = hit.collider.GetComponent<Interactable>();
-            if (obj)
-            {
-                sensedObj = obj;
-            }
-            else
-            {
-                sensedObj = null;
-            }
-        }
-        else
-        {
-            //nothing is detected 
-            sensedObj = null;
-        }
-
-        if (Input.GetKeyDown("e") && sensedObj)
-        {
-            //collect plank here or change the genrator type
-            DestroyImmediate(sensedObj);
-            sensedObj = null;
-        }
+        
     }
 }
