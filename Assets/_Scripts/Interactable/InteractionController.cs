@@ -17,7 +17,7 @@ public class InteractionController : MonoBehaviour
 
     void Awake()
     {
-        m_cam = FindObjectOfType<Camera>();
+        m_cam = gameObject.GetComponent<Camera>();
     }
 
     void Update()
