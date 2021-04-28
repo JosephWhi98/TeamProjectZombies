@@ -17,6 +17,11 @@ public class FirstPersonMovement : MonoBehaviour
         velocity.z = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         velocity.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         velocity.y = 0;
+        if (cc.isGrounded == false)
+        {
+            //Add our gravity Vecotr
+            velocity += Physics.gravity * Time.deltaTime;
+        }
 
         cc.Move(transform.TransformDirection(velocity));
 
