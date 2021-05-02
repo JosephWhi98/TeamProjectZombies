@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager instance;
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public DeathHandler localDeathHandler;
     public static GameObject playerInstance;
     public Transform[] spawnPoints;
+
+    public GameObject gameOverScreen;
 
     //ActorNumber, Details.
     public Dictionary<int, PlayerDetails> players = new Dictionary<int, PlayerDetails>();
@@ -45,13 +48,46 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (Input.GetMouseButtonDown(1))
                 localDeathHandler.SetNewSpectator(-1);
         }
+
+
+        if (CheckGameOver())
+        {
+            GameOver();
+        }
+    }
+
+    public bool CheckGameOver()
+    {
+        float deadPlayers = 0;
+        foreach (KeyValuePair<int, PlayerDetails> pD in players)
+        {
+            if (pD.Value.healthComponent.Health <= 0)
+                deadPlayers += 1;
+        }
+
+        return deadPlayers == players.Count; 
+    }
+
+    public void GameOver()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        //Debug.LogError("GAME OVER!");
+        gameOverScreen.SetActive(true);
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void AddPlayer(Player owner, Transform t)
     {
         if (!players.ContainsKey(owner.ActorNumber))
         {
-            players.Add(owner.ActorNumber, new PlayerDetails() { username = owner.NickName, transform = t });
+            HealthComponent health = t.GetComponent<HealthComponent>();
+
+            players.Add(owner.ActorNumber, new PlayerDetails() { username = owner.NickName, transform = t, healthComponent = health } );
             localDeathHandler.AddLivePlayers(owner.ActorNumber);
         }
         Debug.Log("New Player Added: " + owner.NickName, t.gameObject);
@@ -104,4 +140,5 @@ public class PlayerDetails
 {
     public string username;
     public Transform transform;
+    public HealthComponent healthComponent;
 }
