@@ -13,11 +13,11 @@ public class InteractionController : MonoBehaviour
     public float raySphereRadius;
     public LayerMask interactableLayer;
 
-    private Camera m_cam;
+    public Camera cam;
 
     void Awake()
     {
-        m_cam = gameObject.GetComponent<Camera>();
+        cam = FindObjectOfType<Camera>(); 
     }
 
     void Update()
@@ -28,7 +28,7 @@ public class InteractionController : MonoBehaviour
 
     void CheckForInteractable()
     {
-        Ray _ray = new Ray(m_cam.transform.position, m_cam.transform.forward);
+        Ray _ray = new Ray(cam.transform.position, cam.transform.forward);
         RaycastHit _hitInfo;
 
         bool _hitSomething = Physics.SphereCast(_ray, raySphereRadius, out _hitInfo, rayDistance, interactableLayer);

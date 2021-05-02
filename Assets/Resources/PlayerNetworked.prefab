@@ -1675,11 +1675,12 @@ MonoBehaviour:
   interactionData: {fileID: 11400000, guid: d31599f00de178e48a69a76246f37d4a, type: 2}
   interacting: 0
   holdTime: 0
-  rayDistance: 2
+  rayDistance: 5
   raySphereRadius: 1
   interactableLayer:
     serializedVersion: 2
     m_Bits: 2048
+  cam: {fileID: 4188230287215170365}
 --- !u!1 &4339462664881441164
 GameObject:
   m_ObjectHideFlags: 0
