@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthComponent))]
 public class Port : MonoBehaviour, IDamageable
 {
-    private HealthComponent healthComponent;
+    public HealthComponent healthComponent;
 
     public bool Open { get { return IsDead(); } }
 
@@ -27,13 +27,17 @@ public class Port : MonoBehaviour, IDamageable
         planks[1].SetActive(health > 1);
         planks[2].SetActive(health > 2);
 
-
     }
 
 
     public void TakeDamage(int damage = 1) 
     {
          healthComponent.ChangeHealth(-damage);  
+    }
+
+    public void Repair()
+    {
+        healthComponent.SetHealthAbsolute(3, true);
     }
 
     public bool IsDead()

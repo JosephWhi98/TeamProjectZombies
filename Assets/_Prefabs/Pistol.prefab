@@ -303,6 +303,9 @@ MonoBehaviour:
   reloadTime: 1
   fpsCam: {fileID: 0}
   firstPersonAnimator: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 1847
 --- !u!114 &7045627794329476298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,9 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 252e997f5474b0b48b8f3daeda5df759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flash: {fileID: 0}
   firstPersonAnimator: {fileID: 0}
   thirdPersonAnimator: {fileID: 0}
+  source: {fileID: 0}
+  gunShotClip: {fileID: 0}
 --- !u!1 &3584962165138839902
 GameObject:
   m_ObjectHideFlags: 0
