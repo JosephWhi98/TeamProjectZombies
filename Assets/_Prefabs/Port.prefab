@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 3228851342006181464}
   - component: {fileID: 3228851342006181465}
   - component: {fileID: 4092175240027520277}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Port
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,10 +157,10 @@ BoxCollider:
   m_GameObject: {fileID: 3228851342006181471}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.52040935, y: 0.5, z: 0.7}
+  m_Center: {x: 0.066814356, y: 0.15000002, z: 0}
 --- !u!114 &3228851342006181470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc1493a7a9814af9a62d1b1b432f0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthComponent: {fileID: 0}
   entranceTarget: {fileID: 5124593934094278922}
   exitTarget: {fileID: 8988998854675336989}
   planks:
@@ -261,8 +262,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdDuration: 0
   holdInteract: 0
-  multipleUse: 0
+  multipleUse: 1
   isInteractable: 1
+  port: {fileID: 3228851342006181470}
 --- !u!1 &5811629219283316626
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +440,7 @@ MonoBehaviour:
   holdInteract: 0
   multipleUse: 0
   isInteractable: 1
+  port: {fileID: 0}
 --- !u!1 &8098208681615109437
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,8 +450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8874709543785297799}
-  - component: {fileID: 7375983190565473112}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WindowPlanks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -472,22 +474,6 @@ Transform:
   m_Father: {fileID: 3228851342006181466}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7375983190565473112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8098208681615109437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 294a1d1054fa9ef44b7ff6f3fa31ef66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdDuration: 0
-  holdInteract: 0
-  multipleUse: 0
-  isInteractable: 1
 --- !u!1 &8843591075291096866
 GameObject:
   m_ObjectHideFlags: 0

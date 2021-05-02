@@ -23,6 +23,8 @@ abstract public class Gun : MonoBehaviour
 
     public Animator firstPersonAnimator;
 
+    public LayerMask layerMask;
+
     public event Action<FireEvent> fired;
 
     void Awake()
@@ -54,7 +56,7 @@ abstract public class Gun : MonoBehaviour
         {
 
             currentMag -= 1;
-            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+            if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, layerMask))
             {
                 Zombie zombie = hit.transform.GetComponent<Zombie>();
                 if (zombie != null)
