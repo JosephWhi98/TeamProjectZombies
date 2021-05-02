@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 3228851342006181463}
   - component: {fileID: 3228851342006181464}
   - component: {fileID: 3228851342006181465}
+  - component: {fileID: 4092175240027520277}
   m_Layer: 0
   m_Name: Port
   m_TagString: Untagged
@@ -246,6 +247,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cbfc3d7c0eee4c99a09123793122c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4092175240027520277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228851342006181471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294a1d1054fa9ef44b7ff6f3fa31ef66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  multipleUse: 0
+  isInteractable: 1
 --- !u!1 &5811629219283316626
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +353,7 @@ GameObject:
   - component: {fileID: 427371450187083287}
   - component: {fileID: 7396250873109797457}
   - component: {fileID: 2063639475498426065}
+  - component: {fileID: 1926700522115239169}
   m_Layer: 0
   m_Name: Plank.001
   m_TagString: Untagged
@@ -404,6 +422,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1926700522115239169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6479430174789548398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294a1d1054fa9ef44b7ff6f3fa31ef66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  multipleUse: 0
+  isInteractable: 1
 --- !u!1 &8098208681615109437
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8874709543785297799}
+  - component: {fileID: 7375983190565473112}
   m_Layer: 0
   m_Name: WindowPlanks
   m_TagString: Untagged
@@ -437,6 +472,22 @@ Transform:
   m_Father: {fileID: 3228851342006181466}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7375983190565473112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8098208681615109437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294a1d1054fa9ef44b7ff6f3fa31ef66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  multipleUse: 0
+  isInteractable: 1
 --- !u!1 &8843591075291096866
 GameObject:
   m_ObjectHideFlags: 0
