@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public float pos;
 
+    private bool gameOver;
+    private float gameEndTime;
+
     private void Awake()
     {
         if (instance != null)
@@ -50,10 +53,19 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
 
-        if (CheckGameOver())
+        if (CheckGameOver() && !gameOver)
         {
+            gameEndTime = Time.time;
+            gameOver = true;
             GameOver();
         }
+
+
+        if (gameOver && Time.time > (gameEndTime + 5f))
+        {
+            ExitToMenu();
+        }
+
     }
 
     public bool CheckGameOver()
@@ -78,6 +90,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public void ExitToMenu()
     {
+        LeaveRoom();
         SceneManager.LoadScene(0);
     }
 
