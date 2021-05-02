@@ -14,8 +14,9 @@ public class InteractablePort : InteractableBase
         if (port.healthComponent.Health < 3)
         {
             port.Repair();
+            Debug.Log("Repaired Port");
         }
 
-        Debug.Log("Repaired Port"); //code to repair port 
+        Debug.Log("Interacted with port");
     }
 }
