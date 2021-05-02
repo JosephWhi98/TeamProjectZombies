@@ -16,12 +16,12 @@ public class Generator : MonoBehaviour, IDamageable
 
     public GameObject[] gaugeBar; 
 
-    void Start()
+    public void Start()
     {
         healthComponent = GetComponent<HealthComponent>(); 
     }
 
-    void Update()
+    public void Update()
     {
         float health = healthComponent.Health;
 

@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 3426066383031731017}
   - component: {fileID: 461499855831957914}
   - component: {fileID: 6602192037756549387}
+  - component: {fileID: 8603287676008590642}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -241,6 +242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec0fd2cf31bb6046afb25cd0769ea1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  storedAmmo: 0
+  nextAmmoCycleTime: 0
+  pointsForFixing: 0
   healthComponent: {fileID: 0}
   gaugeBar:
   - {fileID: 6572051292277078963}
@@ -280,6 +284,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c52cbfc3d7c0eee4c99a09123793122c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8603287676008590642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9201491690887146685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb13ea8a52a97d544a460a7030131150, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdDuration: 0
+  holdInteract: 0
+  multipleUse: 1
+  isInteractable: 1
+  generator: {fileID: 3426066383031731017}
 --- !u!1001 &1901732437461345378
 PrefabInstance:
   m_ObjectHideFlags: 0
