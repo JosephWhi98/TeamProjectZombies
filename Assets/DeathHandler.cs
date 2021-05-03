@@ -10,6 +10,8 @@ public class DeathHandler : MonoBehaviour
     public Camera playerCam;
     private Transform audioListener;
 
+    public NetworkedAnimatorView animView;
+
     private DeathHandler spectating;
     [SerializeField] private PhotonView photonView;
     public bool isDead = false;
@@ -57,6 +59,7 @@ public class DeathHandler : MonoBehaviour
     {
         spectatingPlayer += delta;
 
+
         if (spectatingPlayer >= livePlayers.Count)
             spectatingPlayer = 0;
         else if (spectatingPlayer < 0)
@@ -67,9 +70,13 @@ public class DeathHandler : MonoBehaviour
 
         spectating.playerCam.enabled = false;
 
+        spectating.animView.SetThirdPerson();
+
         spectating = GameManager.instance.players[livePlayers[spectatingPlayer]].transform.GetComponent<DeathHandler>();
 
         spectating.playerCam.enabled = true;
+
+        spectating.animView.SetFirstPerson();
 
         MoveAudioListenerToSpectating();
     }

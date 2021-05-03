@@ -2904,6 +2904,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 6559752111201714383}
+  fpAnimator: {fileID: 0}
+  tpAnimator: {fileID: 0}
+  arms: {fileID: 0}
+  character: {fileID: 0}
 --- !u!114 &4355927632364406679
 MonoBehaviour:
   m_ObjectHideFlags: 0
