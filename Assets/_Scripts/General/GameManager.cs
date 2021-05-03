@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public void ExitToMenu()
     {
         LeaveRoom();
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
     }
 
     public void AddPlayer(Player owner, Transform t)
@@ -144,6 +144,12 @@ public class GameManager : MonoBehaviourPunCallbacks
             Destroy(v.transform.gameObject);
             players.Remove(p.ActorNumber);
         }
+    }
+    public override void OnLeftRoom()
+    {
+        SceneManager.LoadScene(0);
+
+        base.OnLeftRoom();
     }
 
     [ContextMenu("Leave")]

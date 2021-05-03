@@ -12,7 +12,8 @@ namespace NetworkingSystems
         void Start()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.ConnectUsingSettings();
+            if (!PhotonNetwork.IsConnected)
+                PhotonNetwork.ConnectUsingSettings();
         }
 
         public override void OnConnectedToMaster()

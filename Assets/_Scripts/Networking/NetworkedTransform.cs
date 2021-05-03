@@ -12,6 +12,7 @@ namespace NetworkingSystems
         protected Vector3 networkDirection;
 
         protected Vector3 storedPosition;
+        protected Quaternion storedRotation;
 
         protected Quaternion networkRotation;
         protected float distanceDelta;
@@ -50,7 +51,9 @@ namespace NetworkingSystems
             if (interpolate)
             {
                 transform.position = Vector3.Lerp(storedPosition, networkPosition, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate); //Time.deltaTime * PhotonNetwork.SerializationRate); //(1.0f / PhotonNetwork.SerializationRate));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * (1.0f / PhotonNetwork.SerializationRate));
+                transform.rotation = Quaternion.Lerp(storedRotation, networkRotation, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate);
+
+                //transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * (1.0f / PhotonNetwork.SerializationRate));
             }
             else
             {
@@ -74,6 +77,7 @@ namespace NetworkingSystems
             {
                 lastUpdateTime = Time.time;
                 storedPosition = transform.position;
+                storedRotation = transform.rotation;
                 networkPosition = (Vector3)stream.ReceiveNext();
                 networkDirection = (Vector3)stream.ReceiveNext();
 

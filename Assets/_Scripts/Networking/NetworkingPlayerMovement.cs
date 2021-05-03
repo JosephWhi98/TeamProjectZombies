@@ -50,7 +50,7 @@ namespace NetworkingSystems
         void OnGUI()
         {
             if (photonView.IsMine)
-                GUI.Label(new Rect(10, 10, 100, 20), ((Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate).ToString("F2"));
+                GUI.Label(new Rect(10, 10, 100, 20), PhotonNetwork.GetPing().ToString("F2"));
         }
 
         private void RPCCrouchStart()
