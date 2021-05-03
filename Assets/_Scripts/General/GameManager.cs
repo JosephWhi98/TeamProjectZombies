@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (gameOver && Time.time > (gameEndTime + 5f))
         {
-            //ExitToMenu();
+            ExitToMenu();
         }
 
     }
