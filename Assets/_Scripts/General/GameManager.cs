@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     private bool gameOver;
     private float gameEndTime;
 
+    private float startTime;
+
     private void Awake()
     {
         if (instance != null)
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviourPunCallbacks
             return;
         }
         instance = this;
+
+        startTime = Time.time;
     }
 
     void Start()
@@ -53,7 +57,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
 
 
-        if (CheckGameOver() && !gameOver)
+        if (CheckGameOver() && !gameOver && Time.time > startTime + 5f)
         {
             gameEndTime = Time.time;
             gameOver = true;
