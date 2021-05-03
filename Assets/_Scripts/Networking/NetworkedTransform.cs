@@ -51,7 +51,7 @@ namespace NetworkingSystems
             if (interpolate)
             {
                 transform.position = Vector3.Lerp(storedPosition, networkPosition, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate); //Time.deltaTime * PhotonNetwork.SerializationRate); //(1.0f / PhotonNetwork.SerializationRate));
-                transform.rotation = Quaternion.Lerp(storedRotation, networkRotation, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate);
+                transform.rotation = Quaternion.Slerp(storedRotation, networkRotation, (Time.time - lastUpdateTime) * PhotonNetwork.SerializationRate);
 
                 //transform.rotation = Quaternion.RotateTowards(transform.rotation, networkRotation, angleDelta * (1.0f / PhotonNetwork.SerializationRate));
             }
