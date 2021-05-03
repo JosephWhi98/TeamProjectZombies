@@ -60,10 +60,9 @@ public class GameManager : MonoBehaviourPunCallbacks
             GameOver();
         }
 
-
         if (gameOver && Time.time > (gameEndTime + 5f))
         {
-            ExitToMenu();
+            //ExitToMenu();
         }
 
     }
@@ -73,7 +72,7 @@ public class GameManager : MonoBehaviourPunCallbacks
         float deadPlayers = 0;
         foreach (KeyValuePair<int, PlayerDetails> pD in players)
         {
-            if (pD.Value.healthComponent.Health <= 0)
+            if (pD.Value.healthComponent.IsDead())
                 deadPlayers += 1;
         }
 
