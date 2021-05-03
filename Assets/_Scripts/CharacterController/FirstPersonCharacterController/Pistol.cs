@@ -13,7 +13,7 @@ public class Pistol : Gun
         range = 100f;
         fireRate = 4;
 
-        totalAmmo = 45;
+        totalAmmo = 9999;
         currentMag = 0;
         maxMag = 15;
         reloadTime = 1f;
