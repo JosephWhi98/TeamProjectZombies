@@ -70,14 +70,13 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     public bool CheckGameOver()
     {
-        float deadPlayers = 0;
         foreach (KeyValuePair<int, PlayerDetails> pD in players)
         {
-            if (pD.Value.healthComponent.Health <= 0)
-                deadPlayers += 1;
+            if (pD.Value.healthComponent.Health > 0)
+                return false;
         }
 
-        return deadPlayers == players.Count; 
+        return true;
     }
 
     public void GameOver()
