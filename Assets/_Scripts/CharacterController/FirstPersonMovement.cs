@@ -25,7 +25,7 @@ public class FirstPersonMovement : MonoBehaviour
 
         cc.Move(transform.TransformDirection(velocity));
 
-        if (velocity.magnitude > 0)
+        if (velocity.z != 0 || velocity.x != 0)
         {
             networkedAnimator.AnimatorBool("Running", true);
             firstPersonAnimator.SetBool("Running", true);
